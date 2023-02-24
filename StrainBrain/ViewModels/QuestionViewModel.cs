@@ -5,11 +5,28 @@ class QuestionViewModel : INotifyPropertyChanged
 {
     public QuestionViewModel()
     {
+        Questions = new ObservableCollection<Question>();
+        _questionId++;
+        Task.Run(async () =>
+        {
+            await LoadQuestion();
+        }).GetAwaiter().OnCompleted(() =>
+        {
+            
+        });
+        
+        AnswerTapped = new Command<Question>((question) => GetQuestion(question));
         TestCommand = new Command<string>(TestAlert);
 
-        ChoiceOne = "Тест вариант";
+        //Task.Run(async () =>
+        //{
+        //    await LoadQuestion();
+        //}).Wait();
+
+        //GetQuestion();
     }
 
+    public Command AnswerTapped { get; }
     public Command TestCommand { get; }
 
     public async void TestAlert(string choice)
@@ -31,6 +48,10 @@ class QuestionViewModel : INotifyPropertyChanged
     }
 
     // Вопросы и варианты ответов
+    public ObservableCollection<Question> Questions { get; set; }
+
+    private int _questionId = 0;
+
     private string _issue;
     public string Issue
     {
@@ -83,6 +104,36 @@ class QuestionViewModel : INotifyPropertyChanged
         {
             _choiceFour = value;
             OnPropertyChanged();
+        }
+    }
+
+    // Список вопросов
+    private IEnumerable<Question> _questionList;
+
+    private int _rightAnswers;
+    public int RightAnswers
+    {
+        get => _rightAnswers;
+        set
+        {
+            _rightAnswers = value;
+            OnPropertyChanged();
+        }
+    }
+    async Task LoadQuestion()
+    {
+        _questionList = await QuestionService.Instance().GetItemsAsync();
+        Questions.Add(_questionList.FirstOrDefault(q => q.QuestionId == _questionId));
+        _questionId++;
+    }
+
+    void GetQuestion(Question question)
+    {
+        if (question != null)
+        {
+            Questions.Clear();
+            Questions.Add(_questionList.FirstOrDefault(q => q.QuestionId == _questionId));
+            _questionId++;
         }
     }
 

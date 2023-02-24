@@ -9,7 +9,7 @@ class QuestionService : IAppServiceProvider<Question>
     }
 
     private static QuestionService _instance;
-    private const string _serverRootUrl = "http://192.168.2.33:45455";
+    private const string _serverRootUrl = "http://localhost:45455";
     HttpClient httpClient;
 
     public static QuestionService Instance()

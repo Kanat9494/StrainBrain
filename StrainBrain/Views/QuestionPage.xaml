@@ -5,17 +5,15 @@
              Title="QuestionPage"
              Shell.TabBarIsVisible="False"
              xmlns:viewModels="clr-namespace:StrainBrain.ViewModels"
+             xmlns:models="clr-namespace:StrainBrain.Models"    
              >
     <ScrollView>
         <StackLayout>
-            <!--<Label 
-                Text="{Binding MenuTitle}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-
-            <Button
-                Text="Отправить"
-                Command="{Binding TestCommand}"/>-->
+            <!--<ActivityIndicator
+                IsVisible="true"
+                IsRunning="true"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
 
             <Label
                 Text="Вопрос, на который нужно ответить"
@@ -29,7 +27,8 @@
             <StackLayout
                 Orientation="Vertical"
                 Margin="15"
-                Spacing="10">
+                Spacing="10"
+                >
 
                 <Frame
                     BackgroundColor="{x:StaticResource White60}"
@@ -97,7 +96,96 @@
 
             <Button
                 Text="Отправить"
-                Command="{Binding TestCommand}"/>
+                Command="{Binding TestCommand}"/>-->
+
+            <CollectionView
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=Questions}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="models:Question">
+                        <StackLayout>
+                            <Label
+                                Text="{Binding Title}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Margin="0, 15, 0, 0"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                />
+
+                            <Frame
+                                BackgroundColor="{x:StaticResource White60}"
+                                BorderColor="Transparent"
+                                HorizontalOptions="FillAndExpand"
+                                Margin="15">
+                                <StackLayout>
+                                    <Label
+                                        Text="{Binding ChoiceOne}"
+                                        LineBreakMode="WordWrap"
+                                        MaxLines="2"
+                                        TextColor="{x:StaticResource White}"
+                                        />
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame
+                                BackgroundColor="{x:StaticResource White60}"
+                                BorderColor="Transparent"
+                                HorizontalOptions="FillAndExpand"
+                                Margin="15">
+                                <StackLayout>
+                                    <Label
+                                        Text="{Binding ChoiceTwo}"
+                                        LineBreakMode="WordWrap"
+                                        MaxLines="2"
+                                        TextColor="{x:StaticResource White}"
+                                        />
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame
+                                BackgroundColor="{x:StaticResource White60}"
+                                BorderColor="Transparent"
+                                HorizontalOptions="FillAndExpand"
+                                Margin="15">
+                                <StackLayout>
+                                    <Label
+                                        Text="{Binding ChoiceThree}"
+                                        LineBreakMode="WordWrap"
+                                        MaxLines="2"
+                                        TextColor="{x:StaticResource White}"
+                                        />
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame
+                                BackgroundColor="{x:StaticResource White60}"
+                                BorderColor="Transparent"
+                                HorizontalOptions="FillAndExpand"
+                                Margin="15">
+                                <StackLayout>
+                                    <Label
+                                        Text="{Binding ChoiceFour}"
+                                        LineBreakMode="WordWrap"
+                                        MaxLines="2"
+                                        TextColor="{x:StaticResource White}"
+                                        />
+                                </StackLayout>
+                            </Frame>
+                            
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=AnswerTapped}"
+                                    CommandParameter="{Binding .}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -21,17 +21,7 @@ class HomeViewModel : INotifyPropertyChanged
         ItemTapped = new Command<RootMenu>(OnItemSelected);
     }
 
-    private ObservableCollection<RootMenu> _rootMenus;
-
-    public ObservableCollection<RootMenu> RootMenus
-    {
-        get => _rootMenus;
-        set
-        {
-            _rootMenus = value;
-            OnPropertyChanged();
-        }
-    }
+    public ObservableCollection<RootMenu> RootMenus { get; set; }
 
     public Command ItemTapped { get; }
 
