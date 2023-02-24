@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StrainBrain.Views.QuestionPage"
              Title="QuestionPage"
-             Shell.TabBarIsVisible="True">
+             Shell.TabBarIsVisible="False"
+             xmlns:viewModels="clr-namespace:StrainBrain.ViewModels"
+             >
     <ScrollView>
         <StackLayout>
             <!--<Label 
@@ -25,32 +27,80 @@
                 />
 
             <StackLayout
-                Orientation="Horizontal"
-                Margin="15">
-                <Button 
-                    Text="Вариант а)"
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="{x:StaticResource White60}"/>
+                Orientation="Vertical"
+                Margin="15"
+                Spacing="10">
 
-                <Button 
-                    Text="Вариант б)"
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="{x:StaticResource White60}"/>
+                <Frame
+                    BackgroundColor="{x:StaticResource White60}"
+                    BorderColor="Transparent"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Label
+                            Text="asdf asdf asd fasdf asdf asdf asd fasdf asdf asdf asd fasd fasd fasd fasf asdf asdf ljasd;lfkj asdf;lkasdf j  lkjasdf lasdkfjd"
+                            LineBreakMode="WordWrap"
+                            MaxLines="2"
+                            TextColor="{x:StaticResource White}"
+                            >
+                            
+                        </Label>
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=TestCommand}"
+                                    />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame
+                    BackgroundColor="{x:StaticResource White60}"
+                    BorderColor="Transparent"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Label
+                        Text="asdf asdf asd fasdf asdf asdf asd fasdf asdf asdf asd fasd fasd fasd fasf asdf asdf ljasd;lfkj asdf;lkasdf j  lkjasdf lasdkfjd"
+                        LineBreakMode="WordWrap"
+                        MaxLines="2"
+                        TextColor="{x:StaticResource White}"
+                        />
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+                    BackgroundColor="{x:StaticResource White60}"
+                    BorderColor="Transparent"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Label
+                        Text="asdf asdf asd fasdf asdf asdf asd fasdf asdf asdf asd fasd fasd fasd fasf asdf asdf ljasd;lfkj asdf;lkasdf j  lkjasdf lasdkfjd"
+                        LineBreakMode="WordWrap"
+                        MaxLines="2"
+                        TextColor="{x:StaticResource White}"
+                        />
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+                    BackgroundColor="{x:StaticResource White60}"
+                    BorderColor="Transparent"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Label
+                        Text="asdf asdf asd fasdf asdf asdf asd fasdf asdf asdf asd fasd fasd fasd fasf asdf asdf ljasd;lfkj asdf;lkasdf j  lkjasdf lasdkfjd"
+                        LineBreakMode="WordWrap"
+                        MaxLines="2"
+                        TextColor="{x:StaticResource White}"
+                        />
+                    </StackLayout>
+                </Frame>
             </StackLayout>
 
-            <StackLayout
-                Orientation="Horizontal"
-                Margin="15">
-                <Button 
-                    Text="Вариант а)"
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="{x:StaticResource White60}"/>
-
-                <Button 
-                    Text="Вариант б)"
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="{x:StaticResource White60}"/>
-            </StackLayout>
+            <Button
+                Text="Отправить"
+                Command="{Binding TestCommand}"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

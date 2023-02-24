@@ -8,10 +8,12 @@ class HomeViewModel : INotifyPropertyChanged
         {
             new RootMenu()
             {
+                MenuId = 1,
                 MenuTitle = "Играть"
             },
             new RootMenu()
             {
+                MenuId = 2,
                 MenuTitle = "Выйти"
             }
         };
@@ -38,9 +40,9 @@ class HomeViewModel : INotifyPropertyChanged
         if (menu == null)
             return;
 
-        if (menu.MenuTitle == "Играть")
-            await Shell.Current.GoToAsync($"{nameof(QuestionPage)}?{nameof(QuestionViewModel.MenuTitle)}={menu.MenuTitle}");
-        else if (menu.MenuTitle == "Выйти")
+        if (menu.MenuId == 1)
+            await Shell.Current.GoToAsync($"{nameof(QuestionPage)}?{nameof(QuestionViewModel.MenuId)}={menu.MenuId}");
+        else if (menu.MenuId == 2)
             System.Diagnostics.Process.GetCurrentProcess().Kill();
     }
 

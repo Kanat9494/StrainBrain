@@ -1,30 +1,29 @@
 ﻿namespace StrainBrain.ViewModels;
 
-[QueryProperty(nameof(MenuTitle), nameof(MenuTitle))]
+[QueryProperty(nameof(MenuId), nameof(MenuId))]
 class QuestionViewModel : INotifyPropertyChanged
 {
     public QuestionViewModel()
     {
-        test = _menuTitle;
-        TestCommand = new Command<string>(TestAlert);
+        TestCommand = new Command(TestAlert);
     }
 
     public Command TestCommand { get; }
 
-    public async void TestAlert(string menuTitle)
+    public async void TestAlert()
     {
-        await Shell.Current.DisplayAlert("Тестовый алерт", MenuTitle, "Ок");
+        await Shell.Current.DisplayAlert("Тестовый алерт", "", "Ок");
     }
 
-    string test = "";
-    private string _menuTitle;
+    string testString = "";
+    private string _menuId;
 
-    public string MenuTitle
+    public string MenuId
     {
-        get => _menuTitle;
+        get => _menuId;
         set
         {
-            _menuTitle = value;
+            _menuId = value;
             OnPropertyChanged();
         }
     }

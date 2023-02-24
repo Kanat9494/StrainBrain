@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:StrainBrain"
     xmlns:views="clr-namespace:StrainBrain.Views"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="{x:StaticResource RedOrange60}">
 
     <TabBar
         >
