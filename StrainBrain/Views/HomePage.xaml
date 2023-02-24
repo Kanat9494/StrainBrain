@@ -5,9 +5,10 @@
              Title="HomePage"
              xmlns:models="clr-namespace:StrainBrain.Models"
              Shell.NavBarIsVisible="False"
-             xmlns:viewModel="clr-namespace:StrainBrain.ViewModels"
+             xmlns:viewModels="clr-namespace:StrainBrain.ViewModels"
              x:Name="HomeContent">
-    <StackLayout>
+    <StackLayout
+        Margin="10">
         <!--<Image
             Source="transfer.jpg"
             HorizontalOptions="FillAndExpand"
@@ -15,21 +16,29 @@
             Aspect="AspectFill"/>-->
         <CollectionView
             HorizontalOptions="Center"
-            VerticalOptions="Center"
-            ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModel:HomeViewModel}}, Path=RootMenus}">
+            VerticalOptions="CenterAndExpand"
+            ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HomeViewModel}}, Path=RootMenus}">
             <CollectionView.ItemTemplate>
                 <DataTemplate
                     x:DataType="models:RootMenu">
                     <StackLayout>
-                        <Frame>
+                        <Frame
+                            Margin="0, 0, 0, 10"
+                            Background="{x:StaticResource White95}">
                             <Label
-                                Text="{Binding PlayGame}"/>
+                                Text="{Binding MenuTitle}"
+                                HorizontalOptions="Center"
+                                FontSize="25"
+                                TextColor="{x:StaticResource Green45}"
+                                FontAttributes="Bold"/>
                         </Frame>
 
-                        <Frame>
-                            <Label
-                                Text="{Binding ExitGame}"/>
-                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                NumberOfTapsRequired="1"
+                                Command="{Binding}"
+                                CommandParameter="{Binding MenuTitle}"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

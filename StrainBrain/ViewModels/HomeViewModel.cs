@@ -8,10 +8,15 @@ class HomeViewModel : INotifyPropertyChanged
         {
             new RootMenu()
             {
-                PlayGame = "Играть",
-                ExitGame = "Выйти",
+                MenuTitle = "Играть"
+            },
+            new RootMenu()
+            {
+                MenuTitle = "Выйти"
             }
         };
+
+        ItemTapped = new Command<RootMenu>()
     }
 
     private ObservableCollection<RootMenu> _rootMenus;
@@ -24,6 +29,16 @@ class HomeViewModel : INotifyPropertyChanged
             _rootMenus = value;
             OnPropertyChanged();
         }
+    }
+
+    public Command ItemTapped { get; }
+
+    async Task OnItemSelected(RootMenu menu)
+    {
+        if (menu == null)
+            return;
+
+        await Shell.Current.GoToAsync($"{nameof(QuestionPage)}?{nameof(QuestionViewModel.MenuTitle)}={menu.MenuTitle}");
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
