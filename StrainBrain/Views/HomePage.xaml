@@ -3,12 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StrainBrain.Views.HomePage"
              Title="HomePage"
-             Shell.NavBarIsVisible="False">
+             xmlns:models="clr-namespace:StrainBrain.Models"
+             Shell.NavBarIsVisible="False"
+             xmlns:viewModel="clr-namespace:StrainBrain.ViewModels"
+             x:Name="HomeContent">
     <StackLayout>
         <!--<Image
             Source="transfer.jpg"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
             Aspect="AspectFill"/>-->
+        <CollectionView
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModel:HomeViewModel}}, Path=RootMenus}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="models:RootMenu">
+                    <StackLayout>
+                        <Frame>
+                            <Label
+                                Text="{Binding PlayGame}"/>
+                        </Frame>
+
+                        <Frame>
+                            <Label
+                                Text="{Binding ExitGame}"/>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 </ContentPage>
