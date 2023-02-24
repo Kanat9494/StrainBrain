@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StrainBrain.Views.HomePage"
-             Title="HomePage"
+             Title=""
              xmlns:models="clr-namespace:StrainBrain.Models"
              Shell.NavBarIsVisible="False"
              xmlns:viewModels="clr-namespace:StrainBrain.ViewModels"
@@ -17,12 +17,14 @@
         <CollectionView
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand"
-            ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HomeViewModel}}, Path=RootMenus}">
+            ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HomeViewModel}}, Path=RootMenus}"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate
                     x:DataType="models:RootMenu">
                     <StackLayout>
                         <Frame
+                            BorderColor="Transparent"
                             Margin="0, 0, 0, 10"
                             Background="{x:StaticResource White95}">
                             <Label
@@ -31,14 +33,14 @@
                                 FontSize="25"
                                 TextColor="{x:StaticResource Green45}"
                                 FontAttributes="Bold"/>
-                        </Frame>
 
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
                                 NumberOfTapsRequired="1"
-                                Command="{Binding}"
-                                CommandParameter="{Binding MenuTitle}"/>
-                        </StackLayout.GestureRecognizers>
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HomeViewModel}}, Path=ItemTapped}"
+                                CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

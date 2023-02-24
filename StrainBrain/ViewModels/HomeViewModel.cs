@@ -16,7 +16,7 @@ class HomeViewModel : INotifyPropertyChanged
             }
         };
 
-        ItemTapped = new Command<RootMenu>()
+        ItemTapped = new Command<RootMenu>(OnItemSelected);
     }
 
     private ObservableCollection<RootMenu> _rootMenus;
@@ -33,12 +33,15 @@ class HomeViewModel : INotifyPropertyChanged
 
     public Command ItemTapped { get; }
 
-    async Task OnItemSelected(RootMenu menu)
+    async void OnItemSelected(RootMenu menu)
     {
         if (menu == null)
             return;
 
-        await Shell.Current.GoToAsync($"{nameof(QuestionPage)}?{nameof(QuestionViewModel.MenuTitle)}={menu.MenuTitle}");
+        if (menu.MenuTitle == "Играть")
+            await Shell.Current.GoToAsync($"{nameof(QuestionPage)}?{nameof(QuestionViewModel.MenuTitle)}={menu.MenuTitle}");
+        else if (menu.MenuTitle == "Выйти")
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
