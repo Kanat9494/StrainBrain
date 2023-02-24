@@ -37,21 +37,18 @@
                     HorizontalOptions="FillAndExpand">
                     <StackLayout>
                         <Label
-                            Text="asdf asdf asd fasdf asdf asdf asd fasdf asdf asdf asd fasd fasd fasd fasf asdf asdf ljasd;lfkj asdf;lkasdf j  lkjasdf lasdkfjd"
+                            Text="{Binding ChoiceOne}"
                             LineBreakMode="WordWrap"
                             MaxLines="2"
                             TextColor="{x:StaticResource White}"
-                            >
-                            
-                        </Label>
-
+                            />
                     </StackLayout>
 
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer
                                     NumberOfTapsRequired="1"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=TestCommand}"
-                                    />
+                                    CommandParameter="{Binding ChoiceOne}"/>
                     </Frame.GestureRecognizers>
                 </Frame>
 
