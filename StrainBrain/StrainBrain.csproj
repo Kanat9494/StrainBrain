@@ -53,6 +53,7 @@
 	  <None Remove="Resources\Images\chats_icon.png" />
 	  <None Remove="Resources\Images\home_icon.png" />
 	  <None Remove="Resources\Images\orders_icon.png" />
+	  <None Remove="Resources\Images\transfer.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -63,6 +64,10 @@
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="ViewModels\" />
 	</ItemGroup>
 
 </Project>

@@ -4,10 +4,11 @@
              x:Class="StrainBrain.Views.HomePage"
              Title="HomePage"
              Shell.NavBarIsVisible="False">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout>
+        <!--<Image
+            Source="transfer.jpg"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Aspect="AspectFill"/>-->
+    </StackLayout>
 </ContentPage>
