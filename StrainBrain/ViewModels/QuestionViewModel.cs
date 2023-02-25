@@ -18,7 +18,7 @@ class QuestionViewModel : INotifyPropertyChanged
         });
 
         //AnswerTapped = new Command<Question>((question) => GetQuestion(question));
-        AnswerTapped = new Command<string>((question) => GetQuestion(question));
+        AnswerTapped = new Command<string>(async (question) => await GetQuestion(question));
         TestCommand = new Command(TestAlert);
     }
 
@@ -164,9 +164,9 @@ class QuestionViewModel : INotifyPropertyChanged
     // Список вопросов
     private IEnumerable<Question> _questionList;
 
-    async Task LoadQuestion()
+    async Task LoadQuestion(int questionsCountToSkip = 0)
     {
-        _questionList = await QuestionService.Instance().GetItemsAsync(0);
+        _questionList = await QuestionService.Instance().GetItemsAsync(questionsCountToSkip);
         question = _questionList.FirstOrDefault(q => q.QuestionId == _questionId);
         if (question != null)
         {
@@ -184,10 +184,13 @@ class QuestionViewModel : INotifyPropertyChanged
             IsLoading = false;
             await Shell.Current.DisplayAlert("Технические проблемы", "В данный момент происходит техническое обновление, " +
                 "попробуйте позже", "Ок");
+
+            //await Shell.Current.Navigation.PopAsync();
+            await Shell.Current.GoToAsync($"..");
         }
     }
 
-    void GetQuestion(string answer)
+    async Task GetQuestion(string answer)
     {
         if (answer != null)
         {
@@ -208,6 +211,10 @@ class QuestionViewModel : INotifyPropertyChanged
                         ChoiceFour = question.ChoiceFour;
                     }
                 }
+            }
+            else
+            {
+                await LoadQuestion(10);
             }
         }
         else

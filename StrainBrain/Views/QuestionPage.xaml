@@ -36,7 +36,8 @@
                 Margin="15, 0, 15, 0"
                 FontSize="20"
                 FontAttributes="Bold"
-                Grid.Row="0"/>
+                Grid.Row="0"
+                LineBreakMode="WordWrap"/>
 
             <StackLayout
                 Orientation="Vertical"
