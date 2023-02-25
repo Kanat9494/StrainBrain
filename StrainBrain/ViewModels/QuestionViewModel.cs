@@ -8,6 +8,7 @@ class QuestionViewModel : INotifyPropertyChanged
         question = new Question();
         Questions = new ObservableCollection<Question>();
         _questionId++;
+        IsLoading = true;
         Task.Run(async () =>
         {
             await LoadQuestion();
@@ -40,6 +41,51 @@ class QuestionViewModel : INotifyPropertyChanged
         set
         {
             _menuId = value;
+            OnPropertyChanged();
+        }
+    }
+
+    //Информация для пользователя
+    private bool _isLoading;
+    public bool IsLoading
+    {
+        get => _isLoading;
+        set
+        {
+            _isLoading = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private int _questionsCount;
+    public int QuestionsCount
+    {
+        get => _questionsCount;
+        set
+        {
+            _questionsCount = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private int _rightAnswersCount;
+    public int RightAnswersCount
+    {
+        get => _rightAnswersCount;
+        set
+        {
+            _rightAnswersCount = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private int _wrongAnswersCount;
+    public int WrongAnswersCount
+    {
+        get => _wrongAnswersCount;
+        set
+        {
+            _wrongAnswersCount = value;
             OnPropertyChanged();
         }
     }
@@ -118,16 +164,6 @@ class QuestionViewModel : INotifyPropertyChanged
     // Список вопросов
     private IEnumerable<Question> _questionList;
 
-    private int _rightAnswers;
-    public int RightAnswers
-    {
-        get => _rightAnswers;
-        set
-        {
-            _rightAnswers = value;
-            OnPropertyChanged();
-        }
-    }
     async Task LoadQuestion()
     {
         _questionList = await QuestionService.Instance().GetItemsAsync(0);
@@ -140,6 +176,8 @@ class QuestionViewModel : INotifyPropertyChanged
             ChoiceThree = question.ChoiceThree;
             ChoiceFour = question.ChoiceFour;
             question = null;
+
+            IsLoading = false;
         }
         else
         {

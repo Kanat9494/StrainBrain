@@ -10,8 +10,8 @@
     <ScrollView>
         <StackLayout>
             <ActivityIndicator
-                IsVisible="true"
-                IsRunning="true"
+                IsVisible="{Binding IsLoading}"
+                IsRunning="{Binding IsLoading}"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"/>
 
