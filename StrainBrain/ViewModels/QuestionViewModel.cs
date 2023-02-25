@@ -5,6 +5,7 @@ class QuestionViewModel : INotifyPropertyChanged
 {
     public QuestionViewModel()
     {
+        question = new Question();
         Questions = new ObservableCollection<Question>();
         _questionId++;
         Task.Run(async () =>
@@ -14,17 +15,13 @@ class QuestionViewModel : INotifyPropertyChanged
         {
             
         });
-        
-        AnswerTapped = new Command<Question>((question) => GetQuestion(question));
+
+        //AnswerTapped = new Command<Question>((question) => GetQuestion(question));
+        AnswerTapped = new Command<string>((question) => GetQuestion(question));
         TestCommand = new Command<string>(TestAlert);
-
-        //Task.Run(async () =>
-        //{
-        //    await LoadQuestion();
-        //}).Wait();
-
-        //GetQuestion();
     }
+
+    Question question;
 
     public Command AnswerTapped { get; }
     public Command TestCommand { get; }
@@ -51,6 +48,17 @@ class QuestionViewModel : INotifyPropertyChanged
     public ObservableCollection<Question> Questions { get; set; }
 
     private int _questionId = 0;
+
+    private string _questionTitle;
+    public string QuestionTitle
+    {
+        get => _questionTitle;
+        set
+        {
+            _questionTitle = value;
+            OnPropertyChanged();
+        }
+    }
 
     private string _issue;
     public string Issue
@@ -122,19 +130,49 @@ class QuestionViewModel : INotifyPropertyChanged
     }
     async Task LoadQuestion()
     {
-        _questionList = await QuestionService.Instance().GetItemsAsync();
-        Questions.Add(_questionList.FirstOrDefault(q => q.QuestionId == _questionId));
-        _questionId++;
-    }
-
-    void GetQuestion(Question question)
-    {
+        _questionList = await QuestionService.Instance().GetItemsAsync(0);
+        question = _questionList.FirstOrDefault(q => q.QuestionId == _questionId);
         if (question != null)
         {
-            Questions.Clear();
-            Questions.Add(_questionList.FirstOrDefault(q => q.QuestionId == _questionId));
-            _questionId++;
+            QuestionTitle = question.Title;
+            ChoiceOne = question.ChoiceOne;
+            ChoiceTwo = question.ChoiceTwo;
+            ChoiceThree = question.ChoiceThree;
+            ChoiceFour = question.ChoiceFour;
+            question = null;
         }
+        else
+        {
+            await Shell.Current.DisplayAlert("Технические проблемы", "В данный момент происходит техническое обновление, " +
+                "попробуйте позже", "Ок");
+        }
+    }
+
+    void GetQuestion(string answer)
+    {
+        if (answer != null)
+        {
+            question = _questionList.FirstOrDefault(q => q.QuestionId == _questionId);
+            if (question != null)
+            {
+                if (question.RightAnswer.Equals(answer))
+                {
+                    _questionId++;
+                    question = null;
+                    question = _questionList.FirstOrDefault(q => q.QuestionId == _questionId);
+                    if (question != null)
+                    {
+                        QuestionTitle = question.Title;
+                        ChoiceOne = question.ChoiceOne;
+                        ChoiceTwo = question.ChoiceTwo;
+                        ChoiceThree = question.ChoiceThree;
+                        ChoiceFour = question.ChoiceFour;
+                    }
+                }
+            }
+        }
+        else
+            return;
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

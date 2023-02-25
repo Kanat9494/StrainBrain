@@ -2,5 +2,5 @@
 
 public interface IAppServiceProvider<T>
 {
-    Task<IEnumerable<T>> GetItemsAsync();
+    Task<IEnumerable<T>> GetItemsAsync(int questionsCountToSkip);
 }
