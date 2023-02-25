@@ -8,28 +8,41 @@
              xmlns:models="clr-namespace:StrainBrain.Models"    
              >
     <ScrollView>
-        <StackLayout>
-            <ActivityIndicator
-                IsVisible="{Binding IsLoading}"
-                IsRunning="{Binding IsLoading}"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"/>
+        <StackLayout
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
 
+            <StackLayout
+                    IsVisible="{Binding IsLoading}"
+                    HeightRequest="100"
+                    WidthRequest="100">
+                <Frame
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    x:Name="ActivityIndicatorFrame">
+                    <ActivityIndicator
+                        IsVisible="{Binding IsLoading}"
+                        IsRunning="{Binding IsLoading}"
+                        Color="{x:StaticResource Green45}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        />
+                </Frame>
+            </StackLayout>
             <Label
                 Text="{Binding QuestionTitle}"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
-                Margin="0, 150, 0, 0"
+                Margin="15, 0, 15, 0"
                 FontSize="20"
                 FontAttributes="Bold"
-                />
+                Grid.Row="0"/>
 
             <StackLayout
                 Orientation="Vertical"
                 Margin="15"
                 Spacing="10"
-                >
-
+                Grid.Row="1">
                 <Frame
                     BackgroundColor="{x:StaticResource White60}"
                     BorderColor="Transparent"
@@ -45,9 +58,9 @@
 
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer
-                                    NumberOfTapsRequired="1"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=AnswerTapped}"
-                                    CommandParameter="{Binding ChoiceOne}"/>
+                            NumberOfTapsRequired="1"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=AnswerTapped}"
+                            CommandParameter="{Binding ChoiceOne}"/>
                     </Frame.GestureRecognizers>
                 </Frame>
 
@@ -57,18 +70,41 @@
                     HorizontalOptions="FillAndExpand">
                     <StackLayout>
                         <Label
-                        Text="{Binding ChoiceTwo}"
-                        LineBreakMode="WordWrap"
-                        MaxLines="2"
-                        TextColor="{x:StaticResource White}"
-                        />
+                            Text="{Binding ChoiceTwo}"
+                            LineBreakMode="WordWrap"
+                            MaxLines="2"
+                            TextColor="{x:StaticResource White}"
+                            />
                     </StackLayout>
 
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer
-                                    NumberOfTapsRequired="1"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=AnswerTapped}"
-                                    CommandParameter="{Binding ChoiceTwo}"/>
+                            NumberOfTapsRequired="1"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=AnswerTapped}"
+                            CommandParameter="{Binding ChoiceTwo}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                
+
+                <Frame
+                    BackgroundColor="{x:StaticResource White60}"
+                    BorderColor="Transparent"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Label
+                            Text="{Binding ChoiceThree}"
+                            LineBreakMode="WordWrap"
+                            MaxLines="2"
+                            TextColor="{x:StaticResource White}"
+                            />
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            NumberOfTapsRequired="1"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=AnswerTapped}"
+                            CommandParameter="{Binding ChoiceThree}"/>
                     </Frame.GestureRecognizers>
                 </Frame>
 
@@ -78,46 +114,45 @@
                     HorizontalOptions="FillAndExpand">
                     <StackLayout>
                         <Label
-                        Text="{Binding ChoiceThree}"
-                        LineBreakMode="WordWrap"
-                        MaxLines="2"
-                        TextColor="{x:StaticResource White}"
-                        />
+                            Text="{Binding ChoiceFour}"
+                            LineBreakMode="WordWrap"
+                            MaxLines="2"
+                            TextColor="{x:StaticResource White}"
+                            />
                     </StackLayout>
 
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer
-                                    NumberOfTapsRequired="1"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=AnswerTapped}"
-                                    CommandParameter="{Binding ChoiceThree}"/>
-                    </Frame.GestureRecognizers>
-                </Frame>
-
-                <Frame
-                    BackgroundColor="{x:StaticResource White60}"
-                    BorderColor="Transparent"
-                    HorizontalOptions="FillAndExpand">
-                    <StackLayout>
-                        <Label
-                        Text="{Binding ChoiceFour}"
-                        LineBreakMode="WordWrap"
-                        MaxLines="2"
-                        TextColor="{x:StaticResource White}"
-                        />
-                    </StackLayout>
-
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer
-                                    NumberOfTapsRequired="1"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=AnswerTapped}"
-                                    CommandParameter="{Binding ChoiceFour}"/>
+                            NumberOfTapsRequired="1"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:QuestionViewModel}}, Path=AnswerTapped}"
+                            CommandParameter="{Binding ChoiceFour}"/>
                     </Frame.GestureRecognizers>
                 </Frame>
             </StackLayout>
 
             <Button
                 Text="Отправить"
-                Command="{Binding TestCommand}"/>
+                Command="{Binding TestCommand}"
+                />
         </StackLayout>
+
+        <!--<StackLayout
+                    Grid.RowSpan="3"
+                    IsVisible="{Binding IsLoading}"
+                    HeightRequest="100"
+                    WidthRequest="100">
+                    <Frame
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        x:Name="ActivityIndicatorFrame">
+                        <ActivityIndicator
+                            IsVisible="{Binding IsLoading}"
+                            IsRunning="{Binding IsLoading}"
+                            Color="{x:StaticResource Green45}"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            />
+                    </Frame>
+                </StackLayout>-->
     </ScrollView>
 </ContentPage>

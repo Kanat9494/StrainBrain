@@ -19,7 +19,7 @@ class QuestionViewModel : INotifyPropertyChanged
 
         //AnswerTapped = new Command<Question>((question) => GetQuestion(question));
         AnswerTapped = new Command<string>((question) => GetQuestion(question));
-        TestCommand = new Command<string>(TestAlert);
+        TestCommand = new Command(TestAlert);
     }
 
     Question question;
@@ -27,9 +27,9 @@ class QuestionViewModel : INotifyPropertyChanged
     public Command AnswerTapped { get; }
     public Command TestCommand { get; }
 
-    public async void TestAlert(string choice)
+    public async void TestAlert()
     {
-        await Shell.Current.DisplayAlert("Тестовый алерт", choice, "Ок");
+        await Shell.Current.DisplayAlert("Тестовый алерт", "", "Ок");
     }
 
     string testString = "";
@@ -181,6 +181,7 @@ class QuestionViewModel : INotifyPropertyChanged
         }
         else
         {
+            IsLoading = false;
             await Shell.Current.DisplayAlert("Технические проблемы", "В данный момент происходит техническое обновление, " +
                 "попробуйте позже", "Ок");
         }
