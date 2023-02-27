@@ -167,6 +167,14 @@ class QuestionViewModel : INotifyPropertyChanged
     async Task LoadQuestion(int questionsCountToSkip = 0)
     {
         _questionList = await QuestionService.Instance().GetItemsAsync(questionsCountToSkip);
+        if (_questionList == null)
+        {
+            await Shell.Current.DisplayAlert("Технические проблемы", "В данный момент происходит техническое обновление, " +
+                "попробуйте позже", "Ок");
+
+            //await Shell.Current.Navigation.PopAsync();
+            await Shell.Current.GoToAsync($"..");
+        }
         question = _questionList.FirstOrDefault(q => q.QuestionId == _questionId);
         if (question != null)
         {

@@ -8,6 +8,14 @@
     Shell.FlyoutBehavior="Disabled"
     Shell.BackgroundColor="{x:StaticResource RedOrange60}">
 
+
+    <ShellItem>
+        <ShellContent 
+            Shell.NavBarIsVisible="False"
+            Shell.TabBarIsVisible="False"
+            ContentTemplate="{DataTemplate views:LoginPage}"/>
+    </ShellItem>
+    
     <TabBar
         >
         <Tab 
