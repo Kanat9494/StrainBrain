@@ -8,21 +8,20 @@
     Shell.FlyoutBehavior="Disabled"
     Shell.BackgroundColor="{x:StaticResource RedOrange60}">
 
+    <TabBar Route="Login">
+        <ShellContent  ContentTemplate="{DataTemplate views:LoginPage}" />
+    </TabBar>
 
-    <ShellItem>
-        <ShellContent 
-            Shell.NavBarIsVisible="False"
-            Shell.TabBarIsVisible="False"
-            ContentTemplate="{DataTemplate views:LoginPage}"/>
-    </ShellItem>
-    
     <TabBar
         >
         <Tab 
             Title="Главная"
             Icon="home_icon.png"
             >
-            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
+            <ShellContent 
+                Route="Home"
+                ContentTemplate="{DataTemplate views:HomePage}"
+                />
         </Tab>
         
         <Tab 

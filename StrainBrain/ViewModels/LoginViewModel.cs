@@ -4,12 +4,12 @@ class LoginViewModel : INotifyPropertyChanged
 {
     public LoginViewModel()
     {
-
+        LoginCommand = new Command(async () => await OnLogin());
     }
 
-    public Command LoginTapped { get; }
+    public Command LoginCommand { get; }
 
-    async void OnLogin()
+    async Task OnLogin()
     {
         if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password))
         {
@@ -17,7 +17,25 @@ class LoginViewModel : INotifyPropertyChanged
         }
         else
         {
+            CurrentUser = await LoginService.Instance().AuthenticateUser(userName: UserName, password: Password);
 
+            if (CurrentUser == null)
+                await Shell.Current.DisplayAlert("Не удалоись войти в систему", "Пожалуйста, введите правильные данные", "Ок");
+            else
+            {
+                await Shell.Current.GoToAsync("//Home");
+            }
+        }
+    }
+
+    private UserResponse _currentUser;
+    public UserResponse CurrentUser
+    {
+        get => _currentUser;
+        set
+        {
+            _currentUser = value;
+            OnPropertyChanged();
         }
     }
 
