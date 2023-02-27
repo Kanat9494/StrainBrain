@@ -9,6 +9,8 @@ global using StrainBrain.Services;
 global using System.Text;
 global using StrainBrain.Models.DTOs.Requests;
 global using StrainBrain.Models.DTOs.Responses;
+global using System.IdentityModel.Tokens.Jwt;
+
 
 
 

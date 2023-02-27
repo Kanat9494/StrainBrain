@@ -1,4 +1,6 @@
-﻿namespace StrainBrain.Services;
+﻿using System.Security.Claims;
+
+namespace StrainBrain.Services;
 
 public class LoginService : ILoginService
 {
@@ -40,8 +42,18 @@ public class LoginService : ILoginService
                 if (response.IsSuccessStatusCode)
                 {
                     var jsonResult = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<UserResponse>(jsonResult);
-                    return result;
+
+                    var accessToken = jsonResult;
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var jwtSecurityToken = tokenHandler.ReadJwtToken(accessToken);
+
+                    UserResponse authenticatedUser = new UserResponse();
+                    authenticatedUser.UserId = int.Parse(jwtSecurityToken.Claims.FirstOrDefault(a => a.Type == "UserId")?.Value ?? "0");
+                    authenticatedUser.UserName = jwtSecurityToken.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value;
+                    authenticatedUser.AccessToken = accessToken;
+                    authenticatedUser.UserBalance = double.Parse(jwtSecurityToken.Claims.FirstOrDefault(a => a.Type == "UserBalance")?.Value ?? "0");
+
+                    return authenticatedUser;
                 }
 
                 return null;
