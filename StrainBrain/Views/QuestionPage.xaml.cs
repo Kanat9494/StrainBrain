@@ -1,5 +1,6 @@
 namespace StrainBrain.Views;
 
+[XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class QuestionPage : ContentPage
 {
 	public QuestionPage()

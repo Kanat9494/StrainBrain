@@ -8,13 +8,16 @@ class QuestionViewModel : INotifyPropertyChanged
         question = new Question();
         Questions = new ObservableCollection<Question>();
         _questionId++;
+        IsAdvertisement = false;
+        IsLoaded = false;
         IsLoading = true;
         Task.Run(async () =>
         {
             await LoadQuestion();
         }).GetAwaiter().OnCompleted(() =>
         {
-            
+            IsLoading = false;
+            IsLoaded = true;
         });
 
         //AnswerTapped = new Command<Question>((question) => GetQuestion(question));
@@ -53,6 +56,28 @@ class QuestionViewModel : INotifyPropertyChanged
         set
         {
             _isLoading = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isLoaded;
+    public bool IsLoaded
+    {
+        get => _isLoaded;
+        set
+        {
+            _isLoaded = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isAdvertisement;
+    public bool IsAdvertisement
+    {
+        get => _isAdvertisement;
+        set
+        {
+            _isAdvertisement = value;
             OnPropertyChanged();
         }
     }
@@ -184,12 +209,9 @@ class QuestionViewModel : INotifyPropertyChanged
             ChoiceThree = question.ChoiceThree;
             ChoiceFour = question.ChoiceFour;
             question = null;
-
-            IsLoading = false;
         }
         else
         {
-            IsLoading = false;
             await Shell.Current.DisplayAlert("Технические проблемы", "В данный момент происходит техническое обновление, " +
                 "попробуйте позже", "Ок");
 
@@ -202,6 +224,9 @@ class QuestionViewModel : INotifyPropertyChanged
     {
         if (answer != null)
         {
+            IsLoaded = false;
+            IsAdvertisement = true;
+            await Task.Delay(2000);
             question = _questionList.FirstOrDefault(q => q.QuestionId == _questionId);
             if (question != null)
             {
@@ -218,10 +243,15 @@ class QuestionViewModel : INotifyPropertyChanged
                         ChoiceThree = question.ChoiceThree;
                         ChoiceFour = question.ChoiceFour;
                     }
+
+                    IsAdvertisement = false;
+                    IsLoaded = true;
                 }
             }
             else
             {
+                IsAdvertisement = false;
+                IsLoaded = true;
                 await LoadQuestion(10);
             }
         }

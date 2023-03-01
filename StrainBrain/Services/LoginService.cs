@@ -43,15 +43,8 @@ public class LoginService : ILoginService
                 {
                     var jsonResult = await response.Content.ReadAsStringAsync();
 
-                    var accessToken = jsonResult;
-                    var tokenHandler = new JwtSecurityTokenHandler();
-                    var jwtSecurityToken = tokenHandler.ReadJwtToken(accessToken);
+                    var authenticatedUser = JsonConvert.DeserializeObject<UserResponse>(jsonResult);
 
-                    UserResponse authenticatedUser = new UserResponse();
-                    authenticatedUser.UserId = int.Parse(jwtSecurityToken.Claims.FirstOrDefault(a => a.Type == "UserId")?.Value ?? "0");
-                    authenticatedUser.UserName = jwtSecurityToken.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).Value;
-                    authenticatedUser.AccessToken = accessToken;
-                    authenticatedUser.UserBalance = double.Parse(jwtSecurityToken.Claims.FirstOrDefault(a => a.Type == "UserBalance")?.Value ?? "0");
 
                     return authenticatedUser;
                 }
