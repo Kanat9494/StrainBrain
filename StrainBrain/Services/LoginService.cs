@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-
-namespace StrainBrain.Services;
+﻿namespace StrainBrain.Services;
 
 public class LoginService : ILoginService
 {
@@ -9,12 +7,6 @@ public class LoginService : ILoginService
     }
 
     private static LoginService _instance;
-    //расскомментировать для телефона
-    //private const string _serverRootUrl = "http://localhost:45455";
-
-    //работает для эмулятора
-    private const string _serverRootUrl = "http://192.168.2.33:45455";
-
     public static LoginService Instance()
     {
         if (_instance == null)
@@ -32,7 +24,7 @@ public class LoginService : ILoginService
         };
         using (HttpClient httpClient = new HttpClient())
         {
-            httpClient.BaseAddress = new Uri(_serverRootUrl);
+            httpClient.BaseAddress = new Uri(StrainBrainConstants.SERVER_ROOT_URL);
 
             var content = new StringContent(JsonConvert.SerializeObject(loginRequest), Encoding.UTF8, "application/json");
             try

@@ -28,7 +28,7 @@
             Title="Профиль"
             Icon="account_icon.png"
             >
-            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
+            <ShellContent ContentTemplate="{DataTemplate views:TestPage}" />
         </Tab>
     </TabBar>
 

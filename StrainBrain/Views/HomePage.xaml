@@ -6,6 +6,7 @@
              xmlns:models="clr-namespace:StrainBrain.Models"
              Shell.NavBarIsVisible="False"
              xmlns:viewModels="clr-namespace:StrainBrain.ViewModels"
+             xmlns:controls="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMTAdmob"
              x:Name="HomeContent">
     <StackLayout
         Margin="10">
@@ -45,5 +46,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <!--<controls:MTAdView AdsId="ca-app-pub-3940256099942544/1033173712"/>-->
     </StackLayout>
 </ContentPage>

@@ -5,17 +5,12 @@ class QuestionService : IAppServiceProvider<Question>
     public QuestionService()
     {
         httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri(_serverRootUrl);
+        httpClient.BaseAddress = new Uri(StrainBrainConstants.SERVER_ROOT_URL);
     }
-
-    private static QuestionService _instance;
-    //расскомментировать для телефона
-    //private const string _serverRootUrl = "http://localhost:45455";
-
-    //работает для эмулятора
-    private const string _serverRootUrl = "http://192.168.2.33:45455";
+    
     HttpClient httpClient;
 
+    private static QuestionService _instance;
     public static QuestionService Instance()
     {
         if (_instance == null)

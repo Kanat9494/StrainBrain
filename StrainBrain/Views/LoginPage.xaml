@@ -75,5 +75,13 @@
                 </StackLayout>
             </StackLayout>
         </Grid>
+
+        <ActivityIndicator
+            IsRunning="{Binding IsLoading}"
+            IsVisible="{Binding IsLoading}"
+            HeightRequest="70"
+            Color="{x:StaticResource Red50}"
+            WidthRequest="70"
+            Grid.RowSpan="3"/>
     </Grid>
 </ContentPage>

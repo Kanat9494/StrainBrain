@@ -10,6 +10,8 @@ global using System.Text;
 global using StrainBrain.Models.DTOs.Requests;
 global using StrainBrain.Models.DTOs.Responses;
 global using Plugin.MauiMTAdmob;
+global using StrainBrain.Constants;
+
 
 
 

@@ -7,13 +7,14 @@
              xmlns:viewModels="clr-namespace:StrainBrain.ViewModels"
              xmlns:models="clr-namespace:StrainBrain.Models" 
              xmlns:controls="clr-namespace:StrainBrain.TemplateControls"
+             xmlns:adsControls="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMTAdmob"
              >
     <ScrollView>
 
         <StackLayout
             Padding="0">
-            <controls:AdsControl
-                IsVisible="{Binding IsAdvertisement}"/>
+            <!--<controls:AdsControl
+                IsVisible="{Binding IsAdvertisement}"/>-->
 
             <StackLayout
                 IsVisible="{Binding IsLoading}"
@@ -151,6 +152,10 @@
                 Command="{Binding TestCommand}"
                 />
             </StackLayout>
+
+            <adsControls:MTAdView AdsId="ca-app-pub-3940256099942544/1033173712"/>
+
+            <adsControls:MTAdView AdsId="ca-app-pub-3940256099942544/6300978111"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

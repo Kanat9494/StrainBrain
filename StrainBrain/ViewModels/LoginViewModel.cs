@@ -4,6 +4,7 @@ class LoginViewModel : INotifyPropertyChanged
 {
     public LoginViewModel()
     {
+        IsLoading = false;
         LoginCommand = new Command(async () => await OnLogin());
     }
 
@@ -11,16 +12,21 @@ class LoginViewModel : INotifyPropertyChanged
 
     async Task OnLogin()
     {
+        IsLoading = true;
         if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password))
         {
             await Shell.Current.DisplayAlert("Пустые значения", "Пожалуйста введите логин и пароль для входа в систему!", "Ок");
+            IsLoading = false;
         }
         else
         {
             CurrentUser = await LoginService.Instance().AuthenticateUser(userName: UserName, password: Password);
 
             if (CurrentUser == null)
+            {
                 await Shell.Current.DisplayAlert("Не удалоись войти в систему", "Пожалуйста, введите правильные данные", "Ок");
+                IsLoading = false;
+            }
             else
             {
                 await Shell.Current.GoToAsync("//Home");
@@ -57,6 +63,17 @@ class LoginViewModel : INotifyPropertyChanged
         set
         {
             _password = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isLoading;
+    public bool IsLoading
+    {
+        get => _isLoading;
+        set
+        {
+            _isLoading = value;
             OnPropertyChanged();
         }
     }

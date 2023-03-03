@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StrainBrain.Views.TestPage"
+             xmlns:controls="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMTAdmob"
+             Title="TestPage">
+    <StackLayout>
+        <Label Text="Let's test an Admob Banner!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+
+        <Button Text="Show Interstitial"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand"/>
+        <!-- Place the Admob controls here -->
+        <!--<controls:MTAdView AdsId="ca-app-pub-3940256099942544/1033173712"/>-->
+
+        <controls:MTAdView AdsId="ca-app-pub-3940256099942544/6300978111"/>
+    </StackLayout>
+</ContentPage>
