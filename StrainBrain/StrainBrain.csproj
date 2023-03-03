@@ -41,6 +41,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="AdsDependencies\**" />
+	  <Compile Remove="AdsDependencies\**" />
+	  <EmbeddedResource Remove="AdsDependencies\**" />
+	  <MauiCss Remove="AdsDependencies\**" />
+	  <MauiXaml Remove="AdsDependencies\**" />
+	  <None Remove="AdsDependencies\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\account_icon.png" />
 	  <None Remove="Resources\Images\chats_icon.png" />
 	  <None Remove="Resources\Images\home_icon.png" />
@@ -67,10 +76,6 @@
 	  <MauiXaml Update="Views\QuestionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
-		<AndroidLibrary Include="AdsDependencies\user-messaging-platform-2.0.0.aar" Bind="false" />
 	</ItemGroup>
 
 </Project>
