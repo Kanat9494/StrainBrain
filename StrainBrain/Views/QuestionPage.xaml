@@ -16,7 +16,7 @@
             <!--<controls:AdsControl
                 IsVisible="{Binding IsAdvertisement}"/>-->
 
-            <StackLayout
+            <!--<StackLayout
                 IsVisible="{Binding IsLoading}"
                 HeightRequest="100"
                 WidthRequest="100"
@@ -35,7 +35,7 @@
                         VerticalOptions="Center"
                         />
                 </Frame>
-            </StackLayout>
+            </StackLayout>-->
 
             <StackLayout
                 HorizontalOptions="Center"
