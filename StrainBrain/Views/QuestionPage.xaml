@@ -16,7 +16,7 @@
             <!--<controls:AdsControl
                 IsVisible="{Binding IsAdvertisement}"/>-->
 
-            <!--<StackLayout
+            <StackLayout
                 IsVisible="{Binding IsLoading}"
                 HeightRequest="100"
                 WidthRequest="100"
@@ -35,12 +35,12 @@
                         VerticalOptions="Center"
                         />
                 </Frame>
-            </StackLayout>-->
+            </StackLayout>
 
             <StackLayout
                 HorizontalOptions="Center"
-                VerticalOptions="CenterAndExpand"
-                IsVisible="{Binding IsLoaded}">
+                IsVisible="{Binding IsLoaded}"
+                Margin="0, 150, 0, 0">
 
 
                 
@@ -153,9 +153,9 @@
                 />
             </StackLayout>
 
-            <adsControls:MTAdView AdsId="ca-app-pub-3940256099942544/1033173712"/>
-
-            <adsControls:MTAdView AdsId="ca-app-pub-3940256099942544/6300978111"/>
+            <adsControls:MTAdView 
+                AdsId="ca-app-pub-3940256099942544/6300978111"
+                VerticalOptions="EndAndExpand"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

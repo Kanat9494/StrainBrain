@@ -7,7 +7,7 @@ public partial class QuestionPage : ContentPage
 	{
 		InitializeComponent();
 
-		//ActivityIndicatorFrame.BackgroundColor = Color.FromRgba(204, 0, 0, 0.5);
+		ActivityIndicatorFrame.BackgroundColor = Color.FromRgba(204, 0, 0, 0.5);
 
         this.BindingContext = new QuestionViewModel();
 	}

@@ -226,6 +226,7 @@ class QuestionViewModel : INotifyPropertyChanged
         {
             IsLoaded = false;
             LoadInterstitial();
+            //AdVideo();
             //IsAdvertisement = true;
             //await Task.Delay(2000);
             question = _questionList.FirstOrDefault(q => q.QuestionId == _questionId);
@@ -269,6 +270,21 @@ class QuestionViewModel : INotifyPropertyChanged
         };
 
         CrossMauiMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
+    }
+
+    //Не работает
+    void AdVideo()
+    {
+        CrossMauiMTAdmob.Current.OnRewardedLoaded += (s, args) =>
+        {
+            CrossMauiMTAdmob.Current.ShowRewarded();
+        };
+
+        CrossMauiMTAdmob.Current.LoadRewarded("ca-app-pub-3940256099942544/5354046379");
+        CrossMauiMTAdmob.Current.ShowRewarded();
+
+        if (CrossMauiMTAdmob.Current.IsRewardedLoaded())
+            CrossMauiMTAdmob.Current.ShowRewarded();
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

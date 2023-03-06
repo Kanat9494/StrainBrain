@@ -17,7 +17,7 @@
             Aspect="AspectFill"/>-->
         <CollectionView
             HorizontalOptions="Center"
-            VerticalOptions="CenterAndExpand"
+            Margin="0, 150, 0, 0"
             ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HomeViewModel}}, Path=RootMenus}"
             SelectionMode="Single">
             <CollectionView.ItemTemplate>
