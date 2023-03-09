@@ -9,7 +9,7 @@
     Shell.BackgroundColor="{x:StaticResource RedOrange60}">
 
     <TabBar Route="Login">
-        <ShellContent  ContentTemplate="{DataTemplate views:LoginPage}" />
+        <ShellContent  ContentTemplate="{DataTemplate views:StartPage}" />
     </TabBar>
 
     <TabBar
