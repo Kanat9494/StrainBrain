@@ -5,35 +5,34 @@
              Title="StartPage"
              Shell.NavBarIsVisible="False">
     <StackLayout
-        Background="{x:StaticResource Green45}">
-        <Label
-            FontSize="Title"
-            Text="Чтобы не было скучно"
-            LineBreakMode="WordWrap"
-            TextColor="White"
-            HorizontalOptions="CenterAndExpand"
-            Margin="0, 200, 0, 0"/>
+        Background="{x:StaticResource White}">
 
-        <Label
-            Margin="0"
-            FontSize="Title"
-            Text="отвечайте на вопросы"
-            LineBreakMode="WordWrap"
-            TextColor="White"
-            HorizontalOptions="Center"
-            />
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="CenterAndExpand">
+            <Frame
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                BorderColor="Transparent"
+                BackgroundColor="{x:StaticResource Green45}"
+                HeightRequest="200"
+                Margin="30">
+                <StackLayout
+                    VerticalOptions="CenterAndExpand">
+                    <Label
+                        FontSize="Title"
+                        TextColor="White"
+                        Text="Отвечайте на вопросы и тренируйте свой мозг"
+                        />
+                </StackLayout>
+            </Frame>
 
-        <Label
-            FontSize="Title"
-            Text="Уз"
-            LineBreakMode="WordWrap"
-            TextColor="White"
-            HorizontalOptions="CenterAndExpand"
-            />
-
-        <Button
-            Text="Попробовать"
-            Command="{Binding TryItCommand}"
-            Margin="25"/>
+            <Button
+                Text="Попробовать"
+                Command="{Binding TryItCommand}"
+                Margin="25"
+                VerticalOptions="Center"
+                />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

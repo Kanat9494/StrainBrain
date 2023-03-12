@@ -13,23 +13,22 @@
     </TabBar>
 
     <TabBar
-        >
+        Route="Home">
         <Tab 
             Title="Главная"
             Icon="home_icon.png"
             >
             <ShellContent 
-                Route="Home"
                 ContentTemplate="{DataTemplate views:HomePage}"
                 />
         </Tab>
         
-        <Tab 
+        <!--<Tab 
             Title="Профиль"
             Icon="account_icon.png"
             >
             <ShellContent ContentTemplate="{DataTemplate views:TestPage}" />
-        </Tab>
+        </Tab>-->
     </TabBar>
 
 </Shell>

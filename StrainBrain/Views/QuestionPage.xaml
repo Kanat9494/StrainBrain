@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StrainBrain.Views.QuestionPage"
-             Title="QuestionPage"
+             Title="Вопросы"
              Shell.TabBarIsVisible="False"
              xmlns:viewModels="clr-namespace:StrainBrain.ViewModels"
              xmlns:models="clr-namespace:StrainBrain.Models" 
@@ -12,7 +12,8 @@
     <ScrollView>
 
         <StackLayout
-            Padding="0">
+            Padding="0"
+            >
             <!--<controls:AdsControl
                 IsVisible="{Binding IsAdvertisement}"/>-->
 
@@ -38,13 +39,29 @@
             </StackLayout>
 
             <StackLayout
-                HorizontalOptions="Center"
                 IsVisible="{Binding IsLoaded}"
-                Margin="12, 150, 12, 12"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"
+                Spacing="15"
+                Margin="20">
+                <Label
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    Text="{Binding RightAnswersCount, StringFormat='Количество правильных ответов: {0:0}'}"/>
+
+                <Label
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    Text="{Binding WrongAnswersCount, StringFormat='Количество неправильных ответов: {0:0}'}"
+                    LineBreakMode="WordWrap"/>
+            </StackLayout>
+
+            <StackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                IsVisible="{Binding IsLoaded}"
+                Margin="20, 20, 20, 20"
                 >
-
-
-                
 
                 <Label
                 Text="{Binding QuestionTitle}"
@@ -148,10 +165,10 @@
                     </Frame>
                 </StackLayout>
 
-                <Button
+                <!--<Button
                 Text="Отправить"
                 Command="{Binding TestCommand}"
-                />
+                />-->
             </StackLayout>
 
             <adsControls:MTAdView 

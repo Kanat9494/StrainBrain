@@ -9,13 +9,14 @@
              xmlns:controls="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMTAdmob"
              x:Name="HomeContent">
     <StackLayout
-        Margin="10, 200, 10, 10">
+        Margin="20">
         <!--<Image
             Source="transfer.jpg"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
             Aspect="AspectFill"/>-->
         <CollectionView
+            VerticalOptions="CenterAndExpand"
             HorizontalOptions="Center"
             ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HomeViewModel}}, Path=RootMenus}"
             SelectionMode="Single">

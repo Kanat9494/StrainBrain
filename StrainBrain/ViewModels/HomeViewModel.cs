@@ -9,7 +9,7 @@ class HomeViewModel : INotifyPropertyChanged
             new RootMenu()
             {
                 MenuId = 1,
-                MenuTitle = "Играть"
+                MenuTitle = "Вопросы"
             },
             new RootMenu()
             {

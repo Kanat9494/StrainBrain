@@ -11,6 +11,9 @@ class QuestionViewModel : INotifyPropertyChanged
         IsAdvertisement = false;
         IsLoaded = false;
         IsLoading = true;
+        RightAnswersCount = 0;
+        WrongAnswersCount = 0;
+        LoadInterstitial();
         Task.Run(async () =>
         {
             await LoadQuestion();
@@ -194,10 +197,9 @@ class QuestionViewModel : INotifyPropertyChanged
         _questionList = await QuestionService.Instance().GetItemsAsync(questionsCountToSkip);
         if (_questionList == null)
         {
-            await Shell.Current.DisplayAlert("Технические проблемы", "В данный момент происходит техническое обновление, " +
-                "попробуйте позже", "Ок");
+            await Shell.Current.DisplayAlert("Вы выиграли", "Вы можете вернуться позже, когда будут доступны " +
+                "новые вопросы", "Ок");
 
-            //await Shell.Current.Navigation.PopAsync();
             await Shell.Current.GoToAsync($"..");
         }
         question = _questionList.FirstOrDefault(q => q.QuestionId == _questionId);
@@ -212,8 +214,8 @@ class QuestionViewModel : INotifyPropertyChanged
         }
         else
         {
-            await Shell.Current.DisplayAlert("Технические проблемы", "В данный момент происходит техническое обновление, " +
-                "попробуйте позже", "Ок");
+            await Shell.Current.DisplayAlert("Вы выиграли", "Вы можете вернуться позже, когда будут доступны " +
+                "новые вопросы", "Ок");
 
             //await Shell.Current.Navigation.PopAsync();
             await Shell.Current.GoToAsync($"..");
@@ -225,7 +227,9 @@ class QuestionViewModel : INotifyPropertyChanged
         if (answer != null)
         {
             IsLoaded = false;
-            LoadInterstitial();
+            //if (_questionId % 3 == 0)
+            //    LoadInterstitial();
+
             //AdVideo();
             //IsAdvertisement = true;
             //await Task.Delay(2000);
@@ -235,6 +239,25 @@ class QuestionViewModel : INotifyPropertyChanged
                 if (question.RightAnswer.Equals(answer))
                 {
                     _questionId++;
+                    RightAnswersCount++;
+                    question = null;
+                    question = _questionList.FirstOrDefault(q => q.QuestionId == _questionId);
+                    if (question != null)
+                    {
+                        QuestionTitle = question.Title;
+                        ChoiceOne = question.ChoiceOne;
+                        ChoiceTwo = question.ChoiceTwo;
+                        ChoiceThree = question.ChoiceThree;
+                        ChoiceFour = question.ChoiceFour;
+                    }
+
+                    IsAdvertisement = false;
+                    IsLoaded = true;
+                }
+                else
+                {
+                    _questionId++;
+                    WrongAnswersCount++;
                     question = null;
                     question = _questionList.FirstOrDefault(q => q.QuestionId == _questionId);
                     if (question != null)
