@@ -12,7 +12,7 @@
 		<ApplicationTitle>StrainBrain</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>kg.LetoCorporation.strainbrain</ApplicationId>
+		<ApplicationId>kg.LetoCorporation.StrainBrain</ApplicationId>
 		<ApplicationIdGuid>77196351-992e-4539-934a-bfd1bb267e94</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -23,9 +23,9 @@
 
 		<AndroidKeyStore>True</AndroidKeyStore>
 		<AndroidSigningKeyStore>myapp.keystore</AndroidSigningKeyStore>
-		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
-		<AndroidSigningKeyPass></AndroidSigningKeyPass>
-		<AndroidSigningStorePass></AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>StrainBrainKey</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>C:\Users\kkudaibergenov\Desktop\projects\GitProjects\.NET MAUI\StrainBrain\StrainBrain</AndroidSigningKeyPass>
+		<AndroidSigningStorePass>C:\Users\kkudaibergenov\Desktop\projects\GitProjects\.NET MAUI\StrainBrain\StrainBrain</AndroidSigningStorePass>
 	</PropertyGroup>
 
 	<!--Publishing-->

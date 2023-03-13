@@ -41,9 +41,10 @@ class QuestionService : IAppServiceProvider<Question>
     //удалить этот метод
     public async Task<IEnumerable<Question>> GetItemsAsync(int questionsCountToskip)
     {
+        await Task.Delay(3000);
+
         await Task.Run(async () =>
         {
-            await Task.Delay(3000);
             _questions = new List<Question>()
             {
                 new Question()
