@@ -38,7 +38,117 @@
                 </Frame>
             </StackLayout>
 
-            <StackLayout
+            <Grid
+                Margin="10, 50, 10, 10"
+                IsVisible="{Binding IsLoaded}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="5*"/>
+                    <ColumnDefinition  Width="5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label
+                    Grid.Column="0"
+                    Text="Правильные"
+                    HorizontalOptions="CenterAndExpand"
+                    FontSize="19"
+                    FontAttributes="Bold"
+                    />
+                <Label
+                    Grid.Column="1"
+                    Text="Неправильные"
+                    FontSize="19"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    />
+
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Text="ответы"
+                    HorizontalOptions="CenterAndExpand"
+                    FontSize="19"
+                    FontAttributes="Bold"
+                    />
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="ответы"
+                    FontSize="19"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    />
+
+                <Frame
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="{x:StaticResource Yellow100Accent}"
+                    BorderColor="Transparent"
+                    Margin="5"
+                    >
+                    <Label
+                        Text="{Binding RightAnswersCount}"
+                        FontSize="30"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"/>
+                </Frame>
+
+                <Frame
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="{x:StaticResource Yellow100Accent}"
+                    BorderColor="Transparent"
+                    Margin="5"
+                    >
+                    <Label
+                        Text="{Binding WrongAnswersCount}"
+                        FontSize="30"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"/>
+                </Frame>
+            </Grid>
+
+            <!--<StackLayout
+                Margin="10">
+                <StackLayout
+                    Orientation="Horizontal"
+                    Spacing="5">
+                    <Label 
+                        Text="Правильные"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Label 
+                        Text="Не правильные"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalOptions="End"/>
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Spacing="5">
+                    <Label 
+                        Text="ответы"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Label 
+                        Text="ответы"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalOptions="End"/>
+                </StackLayout>
+            </StackLayout>-->
+
+            <!--<StackLayout
                 IsVisible="{Binding IsLoaded}"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="CenterAndExpand"
@@ -54,7 +164,7 @@
                     FontAttributes="Bold"
                     Text="{Binding WrongAnswersCount, StringFormat='Количество неправильных ответов: {0:0}'}"
                     LineBreakMode="WordWrap"/>
-            </StackLayout>
+            </StackLayout>-->
 
             <StackLayout
                 HorizontalOptions="Center"
@@ -79,7 +189,7 @@
                 Spacing="10"
                 Grid.Row="1">
                     <Frame
-                    BackgroundColor="{x:StaticResource White60}"
+                    BackgroundColor="{x:StaticResource Green60}"
                     BorderColor="Transparent"
                     HorizontalOptions="FillAndExpand">
                         <StackLayout>
@@ -87,7 +197,7 @@
                             Text="{Binding ChoiceOne}"
                             LineBreakMode="WordWrap"
                             MaxLines="2"
-                            TextColor="{x:StaticResource White}"
+                            TextColor="{x:StaticResource Black}"
                             />
                         </StackLayout>
 
@@ -100,7 +210,7 @@
                     </Frame>
 
                     <Frame
-                    BackgroundColor="{x:StaticResource White60}"
+                    BackgroundColor="{x:StaticResource Green60}"
                     BorderColor="Transparent"
                     HorizontalOptions="FillAndExpand">
                         <StackLayout>
@@ -108,7 +218,7 @@
                             Text="{Binding ChoiceTwo}"
                             LineBreakMode="WordWrap"
                             MaxLines="2"
-                            TextColor="{x:StaticResource White}"
+                            TextColor="{x:StaticResource Black}"
                             />
                         </StackLayout>
 
@@ -123,7 +233,7 @@
 
 
                     <Frame
-                    BackgroundColor="{x:StaticResource White60}"
+                    BackgroundColor="{x:StaticResource Green60}"
                     BorderColor="Transparent"
                     HorizontalOptions="FillAndExpand">
                         <StackLayout>
@@ -131,7 +241,7 @@
                             Text="{Binding ChoiceThree}"
                             LineBreakMode="WordWrap"
                             MaxLines="2"
-                            TextColor="{x:StaticResource White}"
+                            TextColor="{x:StaticResource Black}"
                             />
                         </StackLayout>
 
@@ -144,7 +254,7 @@
                     </Frame>
 
                     <Frame
-                    BackgroundColor="{x:StaticResource White60}"
+                    BackgroundColor="{x:StaticResource Green60}"
                     BorderColor="Transparent"
                     HorizontalOptions="FillAndExpand">
                         <StackLayout>
@@ -152,7 +262,7 @@
                             Text="{Binding ChoiceFour}"
                             LineBreakMode="WordWrap"
                             MaxLines="2"
-                            TextColor="{x:StaticResource White}"
+                            TextColor="{x:StaticResource Black}"
                             />
                         </StackLayout>
 
@@ -172,7 +282,7 @@
             </StackLayout>
 
             <adsControls:MTAdView 
-                AdsId="ca-app-pub-3940256099942544/6300978111"
+                AdsId="ca-app-pub-1407370349507089/3316314890"
                 VerticalOptions="EndAndExpand"
                 HeightRequest="80"/>
         </StackLayout>

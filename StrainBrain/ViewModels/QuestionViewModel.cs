@@ -292,7 +292,7 @@ class QuestionViewModel : INotifyPropertyChanged
             CrossMauiMTAdmob.Current.ShowInterstitial();
         };
 
-        CrossMauiMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
+        CrossMauiMTAdmob.Current.LoadInterstitial("ca-app-pub-1407370349507089/6586256314");
     }
 
     //Не работает

@@ -4,7 +4,7 @@
 				 android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true"
 				 android:usesCleartextTraffic="true">
 		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
-           android:value="ca-app-pub-3940256099942544~3347511713"/>
+           android:value="ca-app-pub-1407370349507089~7778535593"/>
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
